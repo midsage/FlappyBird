@@ -66,12 +66,11 @@ public class Main implements Runnable {
 		glfwShowWindow(window);
 		GL.createCapabilities(); // Same as GLContext.CreateFromCurrent
 		
-		//glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+		glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
 		glEnable(GL_DEPTH_TEST);
 		glActiveTexture(GL_TEXTURE1);
 		System.out.println("OpenGL: " + glGetString(GL_VERSION));
 		Shader.loadAll();
-		
 	
 		Matrix4f pr_matrix = Matrix4f.orthographic(-10.0f, 10.0f, -10.0f * 9.0f / 16.0f, 10.0f * 9.0f / 16.0f, -1.0f, 1.0f);
 		Shader.BG.setUniformMat4f("pr_matrix", pr_matrix);
@@ -79,8 +78,6 @@ public class Main implements Runnable {
 		
 		Shader.BIRD.setUniformMat4f("pr_matrix", pr_matrix);
 		Shader.BIRD.setUniform1i("tex", 1);
-		
-		
 		level = new Level();
 		
 		
@@ -115,14 +112,11 @@ public class Main implements Runnable {
 				frames = 0;
 			}
 
-			if (glfwWindowShouldClose(window) == true) {
+			if (glfwWindowShouldClose(window)) {
 				running = false;
 			}
 
 		}
-		
-		//glfwDestroyWindow(window);
-		//glfwTerminate();
 	}
 
 	private void update() {

@@ -4,8 +4,11 @@ import com.flappybird.math.Matrix4f;
 import com.flappybird.math.Vector3f;
 import com.flappybird.utils.ShaderUtils;
 import static org.lwjgl.opengl.GL20.*;
+import static org.lwjgl.opengl.GL11.*;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.lwjgl.opengl.GL20;
 
 public class Shader {
 	
@@ -66,8 +69,9 @@ public class Shader {
 	
 	public void setUniformMat4f(String name, Matrix4f matrix) {
 		if (!enabled) enable();
-		//glUniformMatrix4fv(getUniform(name), false, matrix.toFloatBuffer());
-		glUniformMatrix4(getUniform(name), false, matrix.toFloatBuffer());
+		glUniformMatrix4fv(getUniform(name), false, matrix.toFloatBuffer());
+		
+		
 	}
 	
 	public void enable() {
